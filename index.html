@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programmazione per principianti</title>
+  <!-- Caricamento di Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom font for a clean, modern look */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Custom style to ensure the book info overlay is on top */
+    .book-info {
+      z-index: 10; /* Ensures the info overlay is above the image when it appears */
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased leading-relaxed">
+<header class="bg-gray-900 text-white py-16 text-center shadow-lg">
+  <h1 class="text-4xl sm:text-5xl font-bold mb-4">Programmazione per principianti</h1>
+  <p class="text-lg sm:text-xl opacity-90 max-w-2xl mx-auto px-4">
+    Ciao! Benvenuto/a nel mondo di "Programmazione per principianti". Esplora il catalogo dei libri della collana.
+  </p>
+</header>
+
+<main class="container mx-auto p-6 lg:p-10">
+  <section class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+    <!-- Blocco Libro Esempio 1: Ripeti questo blocco per ogni tuo libro -->
+    <div class="book-item group relative w-full max-w-xs overflow-hidden rounded-lg shadow-xl bg-white
+                        transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+      <!-- Copertina del libro -->
+      <img src="img/PPP.jpeg"
+           alt="Python per principianti"
+           class="w-full h-full object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105">
+
+      <!-- Dettagli del libro che appaiono all'hover -->
+      <div class="book-info absolute inset-0 bg-gray-900 bg-opacity-85 text-white p-4
+                            flex flex-col justify-center items-center text-center
+                            transform translate-y-full opacity-0
+                            group-hover:translate-y-0 group-hover:opacity-100
+                            transition-all duration-300 ease-in-out rounded-b-lg">
+        <h3 class="text-xl font-semibold mb-2">Python per principianti</h3>
+        <p class="text-sm mb-1">1a Edizione (2024)</p>
+        <p class="text-base font-semibold mb-4">€36,39</p>
+        <a href="https://www.amazon.it/Python-principianti-Niccol%C3%B2-Nannucci/dp/B0DJXV34XC/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=20M7DJ05JJGM1&dib=eyJ2IjoiMSJ9.JxCifokCDIXAUUDagCsO5Q.mos0FgqMxN3WtjzRUHWh_3lF1gwAj9_uTT4XDK4PzcQ&dib_tag=se&keywords=python+per+principianti+nannucci&qid=1750545172&sprefix=python+per+principianti+nannucci%2Caps%2C84&sr=8-1" target="_blank"
+           class="buy-button bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-full
+                              transition duration-300 ease-in-out shadow-lg hover:shadow-xl">
+          Acquista Ora
+        </a>
+      </div>
+    </div>
+
+    <!-- Blocco Libro Esempio 2 -->
+    <div class="book-item group relative w-full max-w-xs overflow-hidden rounded-lg shadow-xl bg-white
+                        transform transition-all duration-300 hover:scale-105 hover:shadow-2xl">
+      <img src="img/JPP.jpeg"
+           alt="Java per principianti"
+           class="w-full h-auto object-cover rounded-t-lg transition-transform duration-300 group-hover:scale-105">
+      <div class="book-info absolute inset-0 bg-gray-900 bg-opacity-85 text-white p-4
+                            flex flex-col justify-center items-center text-center
+                            transform translate-y-full opacity-0
+                            group-hover:translate-y-0 group-hover:opacity-100
+                            transition-all duration-300 ease-in-out rounded-b-lg">
+        <h3 class="text-xl font-semibold mb-2">Java per principianti</h3>
+        <p class="text-sm mb-1">1a Edizione</p>
+        <p class="text-sm mb-1">Uscita prevista:</p>
+        <p class="text-base font-semibold mb-4">Fine 2025</p>
+      </div>
+    </div>
+
+
+
+    <!-- Puoi aggiungere altri blocchi 'book-item' qui -->
+
+  </section>
+</main>
+
+<footer class="bg-gray-900 text-white py-8 text-center mt-12 shadow-inner">
+  <p class="text-sm opacity-80">Per segnalazioni di errori, commenti, suggerimenti: </p><a href="mailto:nannuccibooks@gamil.com">nannuccibooks@gmail.com</a>
+  <p class="text-sm opacity-80">&copy; 2025 Niccolò Nannucci. Tutti i diritti riservati.</p>
+</footer>
+</body>
+</html>
