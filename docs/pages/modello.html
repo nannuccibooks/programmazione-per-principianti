@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modello Libro</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: ["class"],
+      theme: {
+        container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+        extend: {
+          colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+            secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+            destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+            muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+            accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+            popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+            card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+          },
+          borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240 10% 3.9%;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 10% 3.9%;
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --popover: 240 10% 3.9%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-background text-foreground antialiased min-h-screen flex flex-col transition-colors duration-300">
+  
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <div class="container flex h-14 max-w-screen-2xl items-center px-4 md:px-6"> <!-- Added px constraints -->
+      <div class="mr-4 flex">
+        <a href="../index.html" class="mr-6 flex items-center space-x-2 transition-colors hover:text-foreground/80 text-foreground/60">
+          <i data-lucide="library" class="h-5 w-5"></i>
+          <span class="hidden font-bold sm:inline-block">Libreria</span>
+        </a>
+        <nav class="flex items-center space-x-1 text-sm font-medium text-muted-foreground">
+            <i data-lucide="chevron-right" class="h-4 w-4"></i>
+            <span class="text-foreground transition-colors">Modello</span>
+        </nav>
+      </div>
+
+      <div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+        <div class="w-full flex-1 md:w-auto md:flex-none">
+          <!-- Search placeholder if needed -->
+        </div>
+        <nav class="flex items-center">
+            <!-- THEME TOGGLE -->
+            <div class="relative">
+                <button id="theme-trigger" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9">
+                    <span data-theme-icon="light" class="hidden scale-0 transition-all absolute"><i data-lucide="sun" class="h-[1.2rem] w-[1.2rem]"></i></span>
+                    <span data-theme-icon="dark" class="hidden scale-0 transition-all absolute"><i data-lucide="moon" class="h-[1.2rem] w-[1.2rem]"></i></span>
+                    <span data-theme-icon="system" class="hidden scale-0 transition-all absolute"><i data-lucide="sun-moon" class="h-[1.2rem] w-[1.2rem]"></i></span>
+                    <span class="sr-only">Toggle theme</span>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div id="theme-menu" class="hidden absolute right-0 mt-2 w-36 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md">
+                    <div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="light">
+                        <i data-lucide="sun" class="h-4 w-4"></i> Light
+                    </div>
+                    <div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="dark">
+                        <i data-lucide="moon" class="h-4 w-4"></i> Dark
+                    </div>
+                    <div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="system">
+                        <i data-lucide="sun-moon" class="h-4 w-4"></i> System
+                    </div>
+                </div>
+            </div>
+        </nav>
+      </div>
+    </div>
+  </header>
+  
+
+  
+
+  <main class="container mx-auto p-6 lg:p-10">
+    
+    <!-- UNIFIED MAIN CARD -->
+    <div class="bg-card text-card-foreground rounded-lg shadow-sm border border-border p-6 flex flex-col lg:flex-row gap-8 items-stretch" data-book="modello">
+      
+      <!-- LEFT SECTION: Image -->
+      <div class="w-full lg:w-auto flex-shrink-0 flex flex-col justify-center items-center lg:items-start">
+         <img src="../img/PPP.jpeg" alt="Copertina del libro" class="w-full max-w-xs rounded-lg shadow-md border border-border">
+      </div>
+
+      <!-- CENTER SECTION: Details -->
+      <div class="flex-1 w-full flex flex-col justify-center">
+         <h2 id="book-title" class="text-3xl font-bold mb-4 text-center lg:text-left">Caricamento...</h2>
+         
+          <div id="book-stats" class="grid grid-cols-3 gap-2 lg:flex lg:flex-wrap lg:gap-4 mb-6">
+            <!-- Stats will be injected here -->
+          </div>
+
+          <div class="flex flex-wrap gap-3 justify-center lg:justify-start">
+            <a href="#"
+               target="_blank"
+               class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-6 py-2 shadow-md gap-2 w-full sm:w-auto">
+              <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+              Ottieni
+            </a>
+            <a href="#" target="_blank" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-6 py-2 shadow-sm gap-2 w-full sm:w-auto">
+              <i data-lucide="glasses" class="w-4 h-4"></i>
+              Leggi un estratto
+            </a>
+          </div>
+      </div>
+
+      <!-- RIGHT SECTION: Description -->
+      <div class="w-full lg:w-1/3 flex-shrink-0 border-t lg:border-t-0 lg:border-l border-border pt-6 lg:pt-0 lg:pl-8 flex flex-col">
+         <h3 class="text-xl font-bold mb-4 flex items-center gap-2 flex-shrink-0">
+            <i data-lucide="align-left" class="w-5 h-5 text-primary"></i> Descrizione
+          </h3>
+          <div id="book-description" class="overflow-y-auto max-h-[450px] pr-2 custom-scrollbar">
+            <!-- Description will be injected here -->
+          </div>
+      </div>
+
+    </div>
+
+    <!-- Interactive Index Section -->
+    <div class="mt-16 max-w-4xl mx-auto">
+      <h3 class="text-2xl font-bold mb-6 text-center flex items-center justify-center gap-2">
+        <i data-lucide="list-tree" class="w-6 h-6"></i> Indice
+      </h3>
+
+      <div class="max-w-3xl mx-auto mb-12 rounded-lg border border-border bg-card p-4 flex gap-3 shadow-sm">
+        <i data-lucide="info" class="w-5 h-5 text-primary flex-shrink-0 mt-0.5"></i>
+        <div class="text-sm text-muted-foreground leading-relaxed">
+          Il libro introduce i concetti in modo graduale, dando gli strumenti necessari ad apprendere i concetti successivi secondo un ordine logico e focalizzando l'attenzione su un aspetto diverso in ogni capitolo
+        </div>
+      </div>
+      
+      <div class="relative">
+        <!-- Vertical Line (Mobile: 2.5rem, Desktop: 5rem) -->
+        <div class="absolute left-[2.5rem] md:left-[5rem] top-2 bottom-6 w-0.5 bg-border -z-10"></div>
+        
+        <!-- Container for Index Items -->
+        <div id="book-index-list">
+             <!-- Index items will be injected here -->
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+<footer id="main-footer"></footer>
+</body>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="../js/app.js"></script>
+<script>
+  lucide.createIcons();
+</script>
+
+</html>

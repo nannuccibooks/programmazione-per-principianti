@@ -1,0 +1,81 @@
+<!doctype html><html lang="it"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Programmazione per principianti</title><script src="https://cdn.tailwindcss.com"></script><script>tailwind.config = {
+      darkMode: ["class"],
+      theme: {
+        container: { center: true, padding: "2rem", screens: { "2xl": "1400px" } },
+        extend: {
+          colors: {
+            border: "hsl(var(--border))",
+            input: "hsl(var(--input))",
+            ring: "hsl(var(--ring))",
+            background: "hsl(var(--background))",
+            foreground: "hsl(var(--foreground))",
+            primary: { DEFAULT: "hsl(var(--primary))", foreground: "hsl(var(--primary-foreground))" },
+            secondary: { DEFAULT: "hsl(var(--secondary))", foreground: "hsl(var(--secondary-foreground))" },
+            destructive: { DEFAULT: "hsl(var(--destructive))", foreground: "hsl(var(--destructive-foreground))" },
+            muted: { DEFAULT: "hsl(var(--muted))", foreground: "hsl(var(--muted-foreground))" },
+            accent: { DEFAULT: "hsl(var(--accent))", foreground: "hsl(var(--accent-foreground))" },
+            popover: { DEFAULT: "hsl(var(--popover))", foreground: "hsl(var(--popover-foreground))" },
+            card: { DEFAULT: "hsl(var(--card))", foreground: "hsl(var(--card-foreground))" },
+          },
+          borderRadius: {
+            lg: "var(--radius)",
+            md: "calc(var(--radius) - 2px)",
+            sm: "calc(var(--radius) - 4px)",
+          },
+        },
+      },
+    }</script><style>/* Custom font for a clean, modern look */
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+    
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240 10% 3.9%;
+      --card: 0 0% 100%;
+      --card-foreground: 240 10% 3.9%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240 10% 3.9%;
+      --primary: 240 5.9% 10%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 240 5.9% 10%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 240 5.9% 10%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 240 10% 3.9%;
+      --radius: 0.5rem;
+    }
+
+    .dark {
+      --background: 240 10% 3.9%;
+      --foreground: 0 0% 98%;
+      --card: 240 10% 3.9%;
+      --card-foreground: 0 0% 98%;
+      --popover: 240 10% 3.9%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 0 0% 98%;
+      --primary-foreground: 240 5.9% 10%;
+      --secondary: 240 3.7% 15.9%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3.7% 15.9%;
+      --muted-foreground: 240 5% 64.9%;
+      --accent: 240 3.7% 15.9%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 3.7% 15.9%;
+      --input: 240 3.7% 15.9%;
+      --ring: 240 4.9% 83.9%;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    /* Custom style to ensure the book info overlay is on top */
+    .book-info {
+      z-index: 10; /* Ensures the info overlay is above the image when it appears */
+    }</style><script defer="defer" src="./js/app.js"></script></head><body class="bg-background text-foreground antialiased min-h-screen flex flex-col transition-colors duration-300"><header class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"><div class="container flex h-14 max-w-screen-2xl items-center px-4 md:px-6"><div class="mr-4 flex"><a href="#" class="mr-6 flex items-center space-x-2 transition-colors hover:text-foreground/80 text-foreground"><i data-lucide="library" class="h-5 w-5"></i> <span class="font-bold inline-block">Libreria</span></a></div><div class="flex flex-1 items-center justify-between space-x-2 md:justify-end"><div class="w-full flex-1 md:w-auto md:flex-none"></div><nav class="flex items-center"><div class="relative"><button id="theme-trigger" class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9"><span data-theme-icon="light" class="hidden scale-0 transition-all absolute"><i data-lucide="sun" class="h-[1.2rem] w-[1.2rem]"></i></span> <span data-theme-icon="dark" class="hidden scale-0 transition-all absolute"><i data-lucide="moon" class="h-[1.2rem] w-[1.2rem]"></i></span> <span data-theme-icon="system" class="hidden scale-0 transition-all absolute"><i data-lucide="sun-moon" class="h-[1.2rem] w-[1.2rem]"></i></span> <span class="sr-only">Toggle theme</span></button><div id="theme-menu" class="hidden absolute right-0 mt-2 w-36 rounded-md border border-border bg-popover p-1 text-popover-foreground shadow-md"><div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="light"><i data-lucide="sun" class="h-4 w-4"></i> Light</div><div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="dark"><i data-lucide="moon" class="h-4 w-4"></i> Dark</div><div class="cursor-pointer rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50 flex items-center gap-2" data-theme-toggle="system"><i data-lucide="sun-moon" class="h-4 w-4"></i> System</div></div></div></nav></div></div></header><section class="relative bg-muted/20 border-b border-border/40 py-16 md:py-20 overflow-hidden"><canvas id="hero-canvas" class="absolute inset-0 w-full h-full -z-10 opacity-50"></canvas><div class="container px-4 md:px-6 relative z-10 text-center"><h1 class="text-3xl md:text-5xl font-bold tracking-tight mb-6 bg-gradient-to-r from-foreground to-foreground/60 bg-clip-text text-transparent pb-1">Programmazione per principianti</h1><p class="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">Guide chiare, pratiche e complete per iniziare il tuo viaggio nel mondo del codice. Dalla teoria alla pratica, passo dopo passo.</p></div></section><main class="container mx-auto px-4 md:px-6 py-12 flex-1 flex flex-col justify-center"><div class="flex flex-col items-center"><h2 class="text-2xl font-bold mb-10 flex items-center gap-2"><i data-lucide="code-xml" class="w-6 h-6 text-primary"></i> Linguaggi di programmazione</h2><div class="flex flex-wrap justify-center gap-8 w-full max-w-5xl"><div class="group relative w-full max-w-[280px] h-[400px] rounded-xl overflow-hidden shadow-md border border-border/50 bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1"><img src="img/PPP.jpeg" alt="Python per principianti" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div><div class="absolute inset-0 flex flex-col justify-end p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-transparent group-hover:bg-black/60 backdrop-blur-[2px]"><h3 class="text-2xl font-bold mb-1 shadow-black drop-shadow-md">Python</h3><p class="text-sm font-medium text-white/90 mb-4 opacity-100 group-hover:opacity-100 transition-opacity duration-300">per principianti</p><div class="space-y-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform text-sm text-gray-100"><div class="flex items-center justify-between border-t border-white/20 pt-2"><span>1a Edizione (2024)</span> <span>356 pagine</span></div><div class="font-bold text-lg text-white">€36,39</div><div class="grid gap-2"><a href="https://www.amazon.it/Python-principianti-Niccol%C3%B2-Nannucci/dp/B0DJXV34XC/ref=sr_1_1?__mk_it_IT=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=20M7DJ05JJGM1&dib=eyJ2IjoiMSJ9.JxCifokCDIXAUUDagCsO5Q.mos0FgqMxN3WtjzRUHWh_3lF1gwAj9_uTT4XDK4PzcQ&dib_tag=se&keywords=python+per+principianti+nannucci&qid=1750545172&sprefix=python+per+principianti+nannucci%2Caps%2C84&sr=8-1" target="_blank" class="w-full flex items-center justify-center gap-2 bg-white text-black font-semibold py-2 rounded hover:bg-white/90 transition-colors"><i data-lucide="shopping-cart" class="w-4 h-4"></i> Ottieni </a><a href="pages/python_per_principianti.html" class="w-full flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white font-medium py-2 rounded hover:bg-white/10 transition-colors">Dettagli</a></div></div></div></div><div class="group relative w-full max-w-[280px] h-[400px] rounded-xl overflow-hidden shadow-md border border-border/50 bg-card hover:shadow-xl transition-all duration-300 hover:-translate-y-1"><img src="img/JPP.jpeg" alt="Java per principianti" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"><div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-60 transition-opacity duration-300"></div><div class="absolute inset-0 flex flex-col justify-end p-6 text-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-transparent group-hover:bg-black/60 backdrop-blur-[2px]"><h3 class="text-2xl font-bold mb-1 shadow-black drop-shadow-md">Java</h3><p class="text-sm font-medium text-white/90 mb-4">per principianti</p><div class="space-y-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-75 transform text-sm text-gray-100"><div class="flex items-center justify-between border-t border-white/20 pt-2"><span>1a Edizione</span> <span>In arrivo</span></div><div class="font-bold text-lg text-white">Prossimamente</div><div class="grid gap-2"><button disabled="disabled" class="w-full flex items-center justify-center gap-2 bg-white/50 text-black/50 font-semibold py-2 rounded cursor-not-allowed"><i data-lucide="clock" class="w-4 h-4"></i> Non disponibile</button> <a href="pages/java_per_principianti.html" class="w-full flex items-center justify-center gap-2 bg-transparent border border-white/30 text-white font-medium py-2 rounded hover:bg-white/10 transition-colors">Dettagli</a></div></div></div></div></div></div></main><footer id="main-footer"></footer></body><script src="https://unpkg.com/lucide@latest"></script><script>lucide.createIcons();</script></html>
